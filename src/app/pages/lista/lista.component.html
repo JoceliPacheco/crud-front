@@ -1,0 +1,95 @@
+<div class="row" >
+    <div class="col-sm">
+        <div class="input-search">
+            <i class="fa fa-search"></i> <input type="search"  [(ngModel)]="grid.search" (ngModelChange)="grid.p=0" placeholder="Busca" >
+        </div>
+    </div>
+    <div class="col-sm"  >
+        <pagination-controls class="my-pagination" (pageChange)="grid.p = $event" previousLabel=" " nextLabel=" "  ></pagination-controls>
+    </div>
+</div>
+
+
+<!-- TABLE -->
+<table class="table" style="width: 100%;  "   [ngClass]="(grid.loadTable==true)?'load':''" >
+    <thead>
+        <tr  style="cursor: pointer;" >
+            <th   (click)="grid.coluna = 'checked'; grid.dir = !grid.dir; grid.p=0;"  >
+                <i style="margin-right:7px" [ngStyle]="{'opacity':grid.coluna === 'checked' ? 1 : 0.4 }"  class="fa " [ngClass]="(grid.dir==true)?'fa-arrow-up':'fa-arrow-down'"   ></i>
+            </th>
+            <th (click)="grid.allCheck()"   >
+                <i  class="fa " style="font-size: 20px;"  [ngClass]="(grid.all==true)?'fa-check-square':'fa-minus-square'" ></i>
+                    
+            </th>
+            <th scope="col"  *ngFor="let u of grid.header" (click)="grid.coluna = u.v; grid.dir = !grid.dir; grid.p=0;" [ngStyle]="{'opacity':grid.coluna === u.v ? 1 : 0.4 }" >
+                {{u.n}}
+                <i [hidden]="grid.coluna!=u.v" class="fa " [ngClass]="(grid.dir==true)?'fa-arrow-up':'fa-arrow-down'"   > </i> 
+            </th>
+          
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of grid.itens | filter:grid.search | orderBy:grid.coluna:grid.dir | paginate: { itemsPerPage: 10, currentPage: grid.p}"    (dblclick)="grid.openModal(i)"  >
+            <td (click)="grid.openModal(i)" style=" width: 20px;;">
+                <i class="fa fa-edit"></i>
+            </td>
+            <td (click)="i.checked = !i.checked; grid.addCheck()" style="  width:20px;;">
+                <input 
+                (change)="grid.addCheck()"
+                value="{{i.value}}"
+                [(ngModel)]="i.checked" type="checkbox">
+            </td>
+            <td>
+                {{i.name}}
+            </td>
+            <td   >
+                {{i.email}} 
+            </td>
+           
+        </tr>
+    </tbody>
+</table>
+
+<app-controles [checks]="grid.checks" [itens]="grid.itensSel" [tab]="'grid.tab'"  ></app-controles>
+
+<!-- MODAL -->
+<div class="modal fade "  data-backdrop="static" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body" style="padding: 20px; margin: 20px;">
+                <div class="row">
+                    <input type="text"  [(ngModel)]="grid.dados.name"     id="name" name="name" placeholder="Nome" class="col-sm" required>
+                    <input type="email"   [(ngModel)]="grid.dados.email" placeholder="Email" class="col-sm" required>
+                </div>
+                
+                <div class="row">
+                    <h5>Cores vinculadas <span *ngIf="grid.dados.name != ''"> por {{grid.dados.name}}</span></h5>
+                </div>
+                <div class="row">
+                    <ul class="list-group">
+                        <li *ngFor="let c of grid.sublist['cores'] " class="list-group-item d-flex justify-content-between align-items-center">
+                           {{c.name}}
+                          <button type="button"
+                          (click)="muda(c.id)"
+                           class="btn btn-light  "
+                           [ngClass]="(grid.dados.cores[c.id] == true)?'active':''">
+                            <span [hidden]="!grid.dados || !grid.dados.cores[c.id]">On</span>
+                            <span [hidden]="grid.dados && grid.dados.cores[c.id]">Off</span>
+                        </button>
+                        </li>
+                        
+                      </ul>
+
+                      
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="  btn-secondary" data-dismiss="modal" (click)="grid.list()"  >Cancelar</button>
+                <button type="button"   [disabled]="grid.loadSave" [ngClass]="(grid.loadSave==true)?'load':''"  (click)="grid.save(grid.dados)"><span [hidden]="grid.loadSave">Salvar</span> <i [hidden]="!grid.loadSave" class="fa fa-cog" ></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+      
+ 

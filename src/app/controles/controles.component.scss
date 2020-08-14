@@ -1,0 +1,56 @@
+.del{background-color: rgb(128, 8, 8) !important;}
+.add{background-color: #690 !important;}
+
+#fab-box{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    padding: 20px;;
+     display: inline-block;
+}
+
+.fab{
+    padding: 14px;;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+    background-color: #333;
+    margin: 5px;;
+    color: #fff;
+    transition: all 0.5s;
+    font-size: 15px;;
+    line-height: 22px;
+    transform: scale(0);
+    transition: all 0.5s;
+    .badge{
+        position: absolute;
+        font-size: 11px;
+        top:50%;
+        right: 0px;
+        padding-right: 10px;
+    }
+    img{
+        position: absolute;
+        left: 20%;
+        top: 20%;
+        opacity: 0.3;
+        width: 60%;
+        
+    }
+}
+
+.fab.ativo{
+    transform: scale(1);
+    transition: all 0.5s;
+}
+.fab:hover{
+    cursor: pointer;
+    color: #fff;
+    transform: scale(1.2);
+    transition: all 0.5s;
+}
+ 
+

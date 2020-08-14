@@ -1,0 +1,28 @@
+@import "../../_variables.scss";
+ 
+.list-group{
+    width: 100%;
+    font-size: 14px;;
+    label{
+        font-size: 12px;
+        padding: 5px;;;
+    }
+    li{
+        padding: 5px;
+    }
+    .btn-light{
+        background-color: #ccc;
+        color: #666;;
+        border: 0px ;
+        
+    }
+    .btn-light.active{
+        background-color: $primary;
+        color: #eee;
+    }
+}
+
+h5{
+    font-size: 16px;
+    margin-top: 10px;;
+}

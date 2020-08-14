@@ -1,0 +1,9 @@
+<div id="fab-box">
+    <a  class="fab del"  [ngClass]="(grid.checks > 0)?'ativo':''" (click)="grid.delete(itens)" >
+        <i class="fa fa-trash"></i>
+        <span class="badge badge-pill badge-secondary">{{grid.checks}}</span>
+    </a><br>
+    <a class="fab add"  [ngClass]="(grid.add==true)? 'ativo': ''" (click)="grid.openModal({status:1, id: null, cores: []})">
+        <i class="fa fa-plus"></i>
+    </a><br>
+</div>

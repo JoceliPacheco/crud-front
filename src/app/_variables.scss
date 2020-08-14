@@ -1,0 +1,162 @@
+//Variaveis+++++
+@use "sass:selector";
+@import "https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700";
+
+$primary :#025a6e ;
+ 
+
+::ng-deep .my-snack-bar {
+   a,button{
+       color: lighten($primary,20%) !important;
+   }
+}
+
+ 
+body,html {
+    font-family: 'Roboto', sans-serif;
+    background: #eeeeee !important;
+}
+ 
+//CLass
+
+
+
+.close{
+    background-color: #666;
+    border: 0px;
+}
+
+//Elementos+++++
+form label{cursor: pointer;}
+a{cursor: pointer;}
+
+//INPUTs
+
+input,select,textarea{
+    border: 0px;
+    padding:10px;
+    border-radius: 2px;
+    margin: 2px;
+    color: #999;
+    font-size: 14px;;
+    border-bottom: 2px solid  #ccc;
+
+}
+
+input:focus, select:focus,input:active,textarea:focus,textarea:active {
+    outline: none ;
+    border-bottom: 2px solid  darken($primary, 30%);
+    color:$primary
+}
+
+input[type=checkbox],input[type=radio] {
+    position: relative;
+      cursor: pointer;
+    
+}
+
+input[type=checkbox]:before,input[type=radio]:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 0;
+    left: 0;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    background-color: white;
+}
+
+input[type=checkbox]:checked:after,input[type=radio]:checked:after {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 10px;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 2px;
+    left: 6px;
+}
+
+input.erro,textarea.erro,select.erro{border-bottom: solid 2px #f00;}
+
+//BUTTONS
+
+button{
+    border: 0px;;
+    background:  darken($primary, 5%);;
+    color: #fff;
+    height: auto;
+    outline: none;
+    border-bottom: 2px solid  darken($primary, 10%);
+    font-size: 14px;;
+    padding: 10px;
+    border-radius: 4px;;
+    img{height: 25px;}
+}
+button:hover{
+    outline: none;
+    background:  darken($primary, 10%);;
+    border-bottom: 2px solid  darken($primary, 20%);
+    color: lighten($primary, 30%);
+    
+}
+button.load, button:disabled, button:active{
+    background:  darken($primary, 10%);;
+    opacity: 0.5;
+    border: none;
+} 
+.btn-secondary{background-color: #666;  outline: none !important;}
+.btn-secondary:hover{background-color: #333; color: #FFF}
+
+//TABLE
+
+table.load *{
+    opacity: 0.3 !important;
+    transition: all 1s;
+    
+}
+
+table *{
+     transition: all 1s;
+}
+
+table{
+    background-image: url('/assets/img/spin.gif');
+    background-position: center;
+    background-repeat: no-repeat;;
+    background-size: 30px;;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px #ccc;;
+    overflow: hidden;
+
+    transition: all 1s;
+}
+
+tr{
+    background-color: #fff;
+    cursor: pointer;
+}
+
+tbody tr:nth-child(odd){background-color: darken(#fff,2%);}
+tbody tr:hover{background-color: darken(#fff,4%) !important;}
+
+//CLASS ELEMENTOS+++++
+
+.input-search{
+    input{
+        width: 100%;
+        padding-left: 40px;;
+    }
+    i{
+        position: absolute;
+        padding: 15px;;
+    }
+} 
+
+
